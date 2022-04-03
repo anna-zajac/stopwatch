@@ -1,11 +1,12 @@
 import { useState } from "react";
 import FormattedTime from "./components/FormattedTime/FormattedTime";
 import Button from "./components/Button/Button";
+import Container from "./components/Container/Container";
 
 
 const App = () => {
 
-  const [time, setTime] = useState({hours: 0., minutes: 0., seconds: 0, miliseconds: 0});
+  const [time, setTime] = useState({hours: 0, minutes: 0, seconds: 0, miliseconds: 0});
   const [interval, setInt] = useState();
 
   const start = () => {
@@ -44,12 +45,12 @@ const App = () => {
   }
   
   return (
-    <div>
+    <Container>
       <FormattedTime time={time}/>
       <Button onClick={start}> Start </Button>
       <Button onClick={pause}> Stop </Button>
       <Button onClick={reset}> Reset </Button>
-    </div>
+    </Container>
   );
 }
 
