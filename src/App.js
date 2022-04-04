@@ -1,8 +1,7 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import FormattedTime from "./components/FormattedTime/FormattedTime";
 import Button from "./components/Button/Button";
 import Container from "./components/Container/Container";
-
 
 const App = () => {
 
@@ -14,7 +13,7 @@ const App = () => {
     setInt(setInterval(run, 100));
   }
 
-  const run = () =>{
+  const run = () => {
 
     if(time.minutes === 60){
       time.hours++;
@@ -32,7 +31,7 @@ const App = () => {
     }
 
     time.miliseconds++;
-    return setTime({hours: time.hours, minutes: time.minutes, seconds: time.miliseconds})
+    return setTime({hours: time.hours, minutes: time.minutes, seconds: time.seconds, miliseconds: time.miliseconds})
   }
 
   const pause = () => {

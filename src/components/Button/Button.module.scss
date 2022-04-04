@@ -1,5 +1,9 @@
 @import '../../styles/settings.scss';
 
+.wrapper {
+    display: inline-block;
+}
+
 .button {
     background: $color-success;
     border: 0;
