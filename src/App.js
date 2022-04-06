@@ -6,40 +6,47 @@ import Container from "./components/Container/Container";
 const App = () => {
 
   const [time, setTime] = useState({hours: 0, minutes: 0, seconds: 0, miliseconds: 0});
-  const [interval, setInt] = useState();
+  const [int, setInt] = useState();
 
   const start = () => {
-    run();
-    setInt(setInterval(run, 100));
+    if (!int) setInt(setInterval(run, 100));
   }
 
   const run = () => {
+    setTime (time => {
+      const timeCopy = {...time};
 
-    if(time.minutes === 60){
-      time.hours++;
-      time.minutes = 0;
+    timeCopy.miliseconds++;
+
+    if(timeCopy.miliseconds === 100){
+      timeCopy.seconds++;
+      timeCopy.miliseconds = 0;
     }
 
-    if(time.seconds === 60){
-      time.minutes++;
-      time.seconds = 0;
+    if(timeCopy.seconds === 60){
+      timeCopy.minutes++;
+      timeCopy.seconds = 0;
     }
 
-    if(time.miliseconds === 100){
-      time.seconds++;
-      time.miliseconds = 0;
+    if(timeCopy.minutes === 60){
+      timeCopy.hours++;
+      timeCopy.minutes = 0;
     }
 
-    time.miliseconds++;
-    return setTime({hours: time.hours, minutes: time.minutes, seconds: time.seconds, miliseconds: time.miliseconds})
+
+    return {hours: timeCopy.hours, minutes: timeCopy.minutes, seconds: timeCopy.seconds, miliseconds: timeCopy.miliseconds}
+ 
+    });
   }
 
   const pause = () => {
-    clearInterval(interval);
+    clearInterval(int);
+    setInt(null);
   }
 
   const reset = () => {
-    clearInterval(interval);
+    clearInterval(int);
+    setInt(null);
     return setTime({hours: 0, minutes: 0, seconds: 0, miliseconds: 0})
   }
   
